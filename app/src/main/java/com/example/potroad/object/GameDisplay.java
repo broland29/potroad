@@ -21,4 +21,8 @@ public class GameDisplay {
     public int getDisplayWidthPixels() {
         return displayWidthPixels;
     }
+
+    public int getDisplayHeightPixels() {
+        return displayHeightPixels;
+    }
 }

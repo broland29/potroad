@@ -78,13 +78,26 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void update(){
         player.update();
 
+        if(Pothole.readyToSpawn()){
+            int i = (int)((Math.random() * 4) + 1);
+            potholeList.add(new Pothole(
+                    map.getMiddleWidthOfRoad(i + 1) - 25,
+                    100,
+                    50,
+                    50,
+                    ContextCompat.getColor(getContext(),R.color.pothole)));
+        }
+
         Iterator<Pothole> potholeIterator = potholeList.iterator();
         while (potholeIterator.hasNext()){
             Rectangle pothole = potholeIterator.next();
             if (Rectangle.isColliding(pothole,player)){
                 System.out.println("Collide");
                 potholeIterator.remove();
-
+            }
+            if (pothole.getPositionY() > gameDisplay.getDisplayHeightPixels()){
+                System.out.println("Left screen");
+                potholeIterator.remove();
             }
         }
 
