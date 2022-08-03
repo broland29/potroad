@@ -36,6 +36,10 @@ public class Map {
         return roadWidth * (roadNo - 0.5f);
     }
 
+    public float getRoadWidth() {
+        return roadWidth;
+    }
+
     //draws the map/ background
     public void draw(Canvas canvas){
         canvas.drawRect(0,0,width,height,paint_1);

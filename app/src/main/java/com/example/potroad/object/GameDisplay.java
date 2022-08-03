@@ -17,4 +17,8 @@ public class GameDisplay {
     public void update(){
 
     }
+
+    public int getDisplayWidthPixels() {
+        return displayWidthPixels;
+    }
 }

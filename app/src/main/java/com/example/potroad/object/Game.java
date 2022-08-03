@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -51,11 +52,14 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 ContextCompat.getColor(context, R.color.player));
 
         potholeList = new ArrayList<>();
-        potholeList.add(new Pothole(400,400,50,50,Color.BLUE));
-        potholeList.add(new Pothole(600,400,50,50,Color.BLUE));
-        potholeList.add(new Pothole(800,400,50,50,Color.BLUE));
-        potholeList.add(new Pothole(400,600,50,50,Color.BLUE));
-        potholeList.add(new Pothole(400,800,50,50,Color.BLUE));
+        for(int i=0; i<5; i++){
+            potholeList.add(new Pothole(
+                    map.getMiddleWidthOfRoad(i + 1),
+                    i * 200,
+                    50,
+                    50,
+                    ContextCompat.getColor(context,R.color.pothole)));
+        }
     }
 
     public void draw(Canvas canvas) {
@@ -92,5 +96,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (event.getX() < gameDisplay.getDisplayWidthPixels() / 2.0) {
+                System.out.println("left");
+                player.jumpLeft(map.getRoadWidth());
+            } else {
+                System.out.println("right");
+                player.jumpRight(map.getRoadWidth());
+            }
+            return true; //event handled
+        }
+        return false;
     }
 }
