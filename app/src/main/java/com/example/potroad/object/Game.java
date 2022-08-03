@@ -17,6 +17,7 @@ import com.example.potroad.Map;
 import com.example.potroad.R;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 //SurfaceView - "Provides a dedicated drawing surface embedded inside of a view hierarchy"
@@ -54,7 +55,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         potholeList = new ArrayList<>();
         for(int i=0; i<5; i++){
             potholeList.add(new Pothole(
-                    map.getMiddleWidthOfRoad(i + 1),
+                    map.getMiddleWidthOfRoad(i + 1) - 25,
                     i * 200,
                     50,
                     50,
@@ -76,6 +77,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update(){
         player.update();
+
+        Iterator<Pothole> potholeIterator = potholeList.iterator();
+        while (potholeIterator.hasNext()){
+            Rectangle pothole = potholeIterator.next();
+            if (Rectangle.isColliding(pothole,player)){
+                System.out.println("Collide");
+                potholeIterator.remove();
+
+            }
+        }
+
+        for(Pothole pothole : potholeList){
+            pothole.update();
+        }
     }
 
     @Override
