@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="player">#FBBB5B</color>
+    <color name="pothole">#302D29</color>
+    <color name="road_1">#715E40</color>
+    <color name="road_2">#A3885C</color>
 </resources>

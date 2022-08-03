@@ -3,6 +3,8 @@ package com.example.potroad;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import com.example.potroad.object.Game;
+
 public class GameLoop extends Thread{
 
     public static final double MAX_UPS = 30.0;
@@ -56,7 +58,7 @@ public class GameLoop extends Thread{
                 synchronized (surfaceHolder) {
                     game.update();
                     updateCount++;
-                    game.draw();
+                    game.draw(canvas);
                 }
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();

@@ -10,6 +10,12 @@ public abstract class GameObject {
     protected double directionX;
     protected double directionY;
 
-    public abstract void draw(Canvas canvas);
+    public GameObject(double positionX, double positionY){
+        this.positionX = positionX;
+        this.positionY = positionY;
+    }
+
+    public abstract void draw(Canvas canvas, GameDisplay gameDisplay);
+
     public abstract void update();
 }

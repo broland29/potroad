@@ -3,8 +3,8 @@ package com.example.potroad;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
+
+import com.example.potroad.object.Game;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -18,6 +18,5 @@ public class GameActivity extends AppCompatActivity {
         //Context - "Interface to global information about an application environment"
         game = new Game(this);
         setContentView(game);
-
     }
 }
