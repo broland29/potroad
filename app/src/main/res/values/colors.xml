@@ -12,4 +12,8 @@
     <color name="pothole">#302D29</color>
     <color name="road_1">#715E40</color>
     <color name="road_2">#A3885C</color>
+    <color name="score">#353535</color>
+    <color name="game_over">#FF0000</color>
+    <color name="health">#F62727</color>
+    <color name="health_bar">#A38B8B</color>
 </resources>

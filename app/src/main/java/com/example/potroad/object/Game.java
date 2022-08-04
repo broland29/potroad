@@ -3,7 +3,6 @@ package com.example.potroad.object;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -15,6 +14,9 @@ import androidx.core.content.ContextCompat;
 import com.example.potroad.GameLoop;
 import com.example.potroad.Map;
 import com.example.potroad.R;
+import com.example.potroad.panel.GameOver;
+import com.example.potroad.panel.HealthBar;
+import com.example.potroad.panel.Score;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,6 +31,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private final Player player;
     private final List<Pothole> potholeList;
+
+    private final Score score;
+    private final GameOver gameOver;
+    private final HealthBar healthBar;
 
     public Game(Context context) {
         super(context);
@@ -61,6 +67,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     50,
                     ContextCompat.getColor(context,R.color.pothole)));
         }
+
+        score = new Score(context,player);
+        gameOver = new GameOver(context,gameDisplay);
+        healthBar = new HealthBar(context);
     }
 
     public void draw(Canvas canvas) {
@@ -73,9 +83,21 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         for(Pothole pothole : potholeList){
             pothole.draw(canvas,gameDisplay);
         }
+
+        score.draw(canvas);
+        healthBar.draw(canvas, player.getHealthPoints(), gameDisplay);
+
+        if(player.getHealthPoints() <= 0){
+            gameOver.draw(canvas);
+        }
     }
 
     public void update(){
+
+        if(player.getHealthPoints() <= 0){
+            return;
+        }
+
         player.update();
 
         if(Pothole.readyToSpawn()){
@@ -93,6 +115,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             Rectangle pothole = potholeIterator.next();
             if (Rectangle.isColliding(pothole,player)){
                 System.out.println("Collide");
+                player.setHealthPoints(player.getHealthPoints() - 1);
                 potholeIterator.remove();
             }
             if (pothole.getPositionY() > gameDisplay.getDisplayHeightPixels()){
@@ -139,5 +162,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             return true; //event handled
         }
         return false;
+    }
+
+    public void pause(){
+        gameLoop.stopLoop();
     }
 }
