@@ -2,8 +2,10 @@ package com.example.potroad.object;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -12,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.example.potroad.GameLoop;
+import com.example.potroad.GameOverActivity;
 import com.example.potroad.Map;
 import com.example.potroad.R;
-import com.example.potroad.panel.GameOver;
 import com.example.potroad.panel.HealthBar;
 import com.example.potroad.panel.Score;
 
@@ -33,11 +35,16 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private final List<Pothole> potholeList;
 
     private final Score score;
-    private final GameOver gameOver;
     private final HealthBar healthBar;
+
+    private final Context context;
+
+    private double currentPotholeSpeedBonus;
+    private double currentUpdatesPerPotholeSpawn;
 
     public Game(Context context) {
         super(context);
+        this.context = context;
 
         //TODO: what is this?
         SurfaceHolder surfaceHolder = getHolder();
@@ -65,11 +72,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                     i * 200,
                     50,
                     50,
-                    ContextCompat.getColor(context,R.color.pothole)));
+                    ContextCompat.getColor(context,R.color.pothole),
+                    currentPotholeSpeedBonus));
         }
+        currentPotholeSpeedBonus = 0;
+        currentUpdatesPerPotholeSpawn = Pothole.INITIAL_UPDATES_PER_SPAWN;
 
         score = new Score(context,player);
-        gameOver = new GameOver(context,gameDisplay);
         healthBar = new HealthBar(context);
     }
 
@@ -88,7 +97,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         healthBar.draw(canvas, player.getHealthPoints(), gameDisplay);
 
         if(player.getHealthPoints() <= 0){
-            gameOver.draw(canvas);
+            //black magic: https://stackoverflow.com/questions/4298225/how-can-i-start-an-activity-from-a-non-activity-class
+            context.startActivity(new Intent(context, GameOverActivity.class));
         }
     }
 
@@ -100,14 +110,25 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         player.update();
 
-        if(Pothole.readyToSpawn()){
-            int i = (int)((Math.random() * 4) + 1);
+        if(Pothole.readyToSpawn(currentUpdatesPerPotholeSpawn)){
+            int i = (int)((Math.random() * 5) + 1);
             potholeList.add(new Pothole(
-                    map.getMiddleWidthOfRoad(i + 1) - 25,
+                    map.getMiddleWidthOfRoad(i) - 25,
                     100,
                     50,
                     50,
-                    ContextCompat.getColor(getContext(),R.color.pothole)));
+                    ContextCompat.getColor(getContext(),R.color.pothole),
+                    currentPotholeSpeedBonus));
+        }
+
+        if(Pothole.readyForSpeedup()){
+            currentPotholeSpeedBonus += Pothole.SPEEDUP;  //for future potholes' starting speed
+            for(Pothole pothole : potholeList){
+                pothole.speedUp();
+            }
+            Pothole.updatesUntilNextSpawn = currentUpdatesPerPotholeSpawn; // a pothole spawned, but the next one will spawn faster
+            currentUpdatesPerPotholeSpawn *= 0.8;
+            Log.d("Game.java","update() - currentUpdatesPerPotholeSpawn = " + currentUpdatesPerPotholeSpawn);
         }
 
         Iterator<Pothole> potholeIterator = potholeList.iterator();

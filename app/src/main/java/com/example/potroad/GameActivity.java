@@ -2,7 +2,9 @@ package com.example.potroad;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.potroad.object.Game;
 
@@ -41,14 +43,21 @@ public class GameActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    //TODO: make sure that activities are closed, there are not multiple activities of same type running
+    //https://developer.android.com/guide/components/activities/tasks-and-back-stack
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("GameActivity.java","onDestroy()");
     }
 
     @Override
     public void onBackPressed() {
         //disabled back button
         //super.onBackPressed();
+    }
+
+    public void showGameOver(){
+        startActivity(new Intent(this, GameActivity.class));
     }
 }
