@@ -17,4 +17,11 @@
     <color name="game_over">#FF0000</color>
     <color name="health">#F62727</color>
     <color name="health_bar">#A38B8B</color>
+
+    <!-- https://coolors.co/palette/006d77-83c5be-edf6f9-ffddd2-e29578 -->
+    <color name="palette_ming">#006D77</color>
+    <color name="palette_middle_blue_green">#83C5BE</color>
+    <color name="palette_alice_blue">#EDF6F9</color>
+    <color name="palette_unbleached_silk">#FFDDD2</color>
+    <color name="palette_dark_salmon">#E29578</color>
 </resources>

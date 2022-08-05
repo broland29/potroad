@@ -37,8 +37,8 @@ public class GameOverActivity extends Activity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
-        int width = (int)(displayMetrics.widthPixels * .5);
-        int height = (int)(displayMetrics.heightPixels * .5);
+        int width = (int)(displayMetrics.widthPixels * .75);
+        int height = (int)(displayMetrics.heightPixels * .75);
 
         getWindow().setLayout(width,height);
     }

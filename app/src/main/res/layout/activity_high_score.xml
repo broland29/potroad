@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/palette_middle_blue_green"
     tools:context=".activity.HighScoreActivity">
 
     <TableLayout
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="@color/palette_ming"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,286 +20,342 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row1col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/number_high_score" />
+                android:text="@string/number_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row1col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/name_high_score" />
+                android:text="@string/name_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row1col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/score_high_score" />
+                android:text="@string/score_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row2col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_1_high_score" />
+                android:text="@string/no_1_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row2col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row2col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row3col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_2_high_score" />
+                android:text="@string/no_2_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row3col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row3col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row4col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_3_high_score" />
+                android:text="@string/no_3_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row4col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row4col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row5col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_4_high_score" />
+                android:text="@string/no_4_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row5col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row5col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row6col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_5_high_score" />
+                android:text="@string/no_5_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row6col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row6col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row7col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_6_high_score" />
+                android:text="@string/no_6_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row7col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row7col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row8col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_7_high_score" />
+                android:text="@string/no_7_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row8col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row8col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row9col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_8_high_score" />
+                android:text="@string/no_8_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row9col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row9col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_green_light">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/row10col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_9_high_score" />
+                android:text="@string/no_9_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row10col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row10col3"
                 android:layout_weight="3"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
-        <TableRow android:background="@android:color/holo_green_light">
+        <TableRow>
 
             <TextView
                 android:id="@+id/row11col1"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="@string/no_10_high_score" />
+                android:text="@string/no_10_high_score"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row11col2"
                 android:layout_weight="4"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
             <TextView
                 android:id="@+id/row11col3"
                 android:layout_weight="3"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:gravity="center_horizontal"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/palette_alice_blue" />
 
         </TableRow>
 
@@ -308,8 +365,10 @@
         android:id="@+id/title_text_high_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/title_high_score"
-        android:textSize="30sp"
+        android:textColor="@color/palette_ming"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/table_layout_high_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -317,10 +376,15 @@
 
     <Button
         android:id="@+id/reset_button_high_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_border"
+        android:fontFamily="sans-serif-condensed-medium"
         android:onClick="resetButtonOnClick"
         android:text="@string/reset_high_score"
+        android:textAllCaps="false"
+        android:textColor="@color/palette_ming"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/back_button_high_score"
@@ -329,10 +393,15 @@
 
     <Button
         android:id="@+id/back_button_high_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_border"
+        android:fontFamily="sans-serif-condensed-medium"
         android:onClick="backButtonOnClick"
         android:text="@string/back_high_score"
+        android:textAllCaps="false"
+        android:textColor="@color/palette_ming"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reset_button_high_score"
         app:layout_constraintHorizontal_bias="0.5"
