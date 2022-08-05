@@ -1,4 +1,4 @@
-package com.example.potroad;
+package com.example.potroad.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.potroad.R;
 import com.example.potroad.object.Game;
 
 public class GameActivity extends AppCompatActivity {

@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.example.potroad.GameLoop;
-import com.example.potroad.GameOverActivity;
+import com.example.potroad.activity.GameOverActivity;
 import com.example.potroad.Map;
 import com.example.potroad.R;
 import com.example.potroad.panel.HealthBar;
@@ -98,7 +98,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         if(player.getHealthPoints() <= 0){
             //black magic: https://stackoverflow.com/questions/4298225/how-can-i-start-an-activity-from-a-non-activity-class
-            context.startActivity(new Intent(context, GameOverActivity.class));
+            Intent intent = new Intent(context, GameOverActivity.class);
+            intent.putExtra("score",player.getGamePoints());    //pass high score
+            context.startActivity(intent);
         }
     }
 
