@@ -8,47 +8,47 @@
     android:background="#AC8484">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/title_text_game_over"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Game Over"
+        android:text="@string/title_game_over"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/home_button_game_over"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/home_button_game_over"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="homeButtonListener"
-        android:text="Home"
+        android:onClick="homeButtonOnClick"
+        android:text="@string/home_game_over"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/again_button_game_over"
+        app:layout_constraintTop_toBottomOf="@+id/title_text_game_over" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/again_button_game_over"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="repeatButtonListener"
-        android:text="Again"
+        android:onClick="againButtonOnClick"
+        android:text="@string/again_game_over"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/home_button_game_over"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/title_text_game_over" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/submit_button_game_over"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="submitHighScoreButtonListener"
-        android:text="Submit High Score"
+        android:onClick="submitButtonOnClick"
+        android:text="@string/submit_game_over"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/again_button_game_over" />
 </androidx.constraintlayout.widget.ConstraintLayout>

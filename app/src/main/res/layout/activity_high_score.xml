@@ -7,7 +7,7 @@
     tools:context=".activity.HighScoreActivity">
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/table_layout_high_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
@@ -27,21 +27,21 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="No." />
+                android:text="@string/number_high_score" />
 
             <TextView
                 android:id="@+id/row1col2"
                 android:layout_weight="4"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="Name" />
+                android:text="@string/name_high_score" />
 
             <TextView
                 android:id="@+id/row1col3"
                 android:layout_weight="3"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="Score" />
+                android:text="@string/score_high_score" />
 
         </TableRow>
 
@@ -55,7 +55,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="1." />
+                android:text="@string/no_1_high_score" />
 
             <TextView
                 android:id="@+id/row2col2"
@@ -81,7 +81,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="2." />
+                android:text="@string/no_2_high_score" />
 
             <TextView
                 android:id="@+id/row3col2"
@@ -107,7 +107,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="3." />
+                android:text="@string/no_3_high_score" />
 
             <TextView
                 android:id="@+id/row4col2"
@@ -133,7 +133,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="4." />
+                android:text="@string/no_4_high_score" />
 
             <TextView
                 android:id="@+id/row5col2"
@@ -159,7 +159,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="5." />
+                android:text="@string/no_5_high_score" />
 
             <TextView
                 android:id="@+id/row6col2"
@@ -185,7 +185,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="6." />
+                android:text="@string/no_6_high_score" />
 
             <TextView
                 android:id="@+id/row7col2"
@@ -211,7 +211,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="7." />
+                android:text="@string/no_7_high_score" />
 
             <TextView
                 android:id="@+id/row8col2"
@@ -237,7 +237,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="8." />
+                android:text="@string/no_8_high_score" />
 
             <TextView
                 android:id="@+id/row9col2"
@@ -263,7 +263,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="9." />
+                android:text="@string/no_9_high_score" />
 
             <TextView
                 android:id="@+id/row10col2"
@@ -286,7 +286,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:padding="10sp"
-                android:text="10." />
+                android:text="@string/no_10_high_score" />
 
             <TextView
                 android:id="@+id/row11col2"
@@ -305,39 +305,39 @@
     </TableLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/title_text_high_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="High Scores"
+        android:text="@string/title_high_score"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintBottom_toTopOf="@+id/table_layout_high_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/reset_button_high_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="resetButtonListener"
-        android:text="Reset"
+        android:onClick="resetButtonOnClick"
+        android:text="@string/reset_high_score"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintStart_toEndOf="@+id/back_button_high_score"
+        app:layout_constraintTop_toBottomOf="@+id/table_layout_high_score"
         app:layout_constraintVertical_bias="0.435" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/back_button_high_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="backButtonListener"
-        android:text="Back"
+        android:onClick="backButtonOnClick"
+        android:text="@string/back_high_score"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/reset_button_high_score"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/table_layout_high_score"
         app:layout_constraintVertical_bias="0.435" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

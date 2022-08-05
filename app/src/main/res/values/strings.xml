@@ -1,7 +1,41 @@
 <resources>
+
+    <!-- needed for AndroidManifest -->
     <string name="app_name">PotRoad</string>
-    <string name="start">Start</string>
-    <string name="game_over">Game Over</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- MainActivity strings -->
+    <string name="start_main">Start</string>
+    <string name="high_score_main">High Scores</string>
+
+    <!-- GameOverActivity strings -->
+    <string name="title_game_over">Game Over</string>
+    <string name="home_game_over">Home</string>
+    <string name="again_game_over">Again</string>
+    <string name="submit_game_over">Submit High Score</string>
+
+    <!-- HighScoreActivity strings -->
+    <string name="number_high_score">No.</string>
+    <string name="name_high_score">Name</string>
+    <string name="score_high_score">Score</string>
+    <string name="no_1_high_score">1.</string>
+    <string name="no_2_high_score">2.</string>
+    <string name="no_3_high_score">3.</string>
+    <string name="no_4_high_score">4.</string>
+    <string name="no_5_high_score">5.</string>
+    <string name="no_6_high_score">6.</string>
+    <string name="no_7_high_score">7.</string>
+    <string name="no_8_high_score">8.</string>
+    <string name="no_9_high_score">9.</string>
+    <string name="no_10_high_score">10.</string>
+    <string name="title_high_score">High Scores</string>
+    <string name="reset_high_score">Reset</string>
+    <string name="back_high_score">Back</string>
+
+    <!-- highScorePopup strings -->
+    <string name="name_popup_high_score">Nickname</string>
+    <string name="back_popup_high_score">Back</string>
+    <string name="submit_popup_high_score">Submit</string>
+
+
 </resources>

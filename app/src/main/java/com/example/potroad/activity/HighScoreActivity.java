@@ -1,6 +1,5 @@
 package com.example.potroad.activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -19,31 +17,46 @@ import com.example.potroad.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ *  The activity which shows the high scores in a table
+ *   - launched by MainActivity or GameOverActivity (through submitPopupView)
+ *   - brings to MainActivity
+ */
 public class HighScoreActivity extends AppCompatActivity {
 
     private static final String SHARED_PREFERENCES_NAME = "highScores";
-    private ArrayList<HighScore> highScores;
+    private ArrayList<HighScore> highScores;                            //list of all high scores
+
+
+    /* Stages of the activity lifecycle */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("HighScoreActivity.java","onCreate()");
         super.onCreate(savedInstanceState);
+        Log.d("HighScoreActivity.java","onCreate()");
+
         setContentView(R.layout.activity_high_score);
         highScores = new ArrayList<>();
         loadData();
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("HighScoreActivity.java","onStart()");
+    }
+
+    @Override
     protected void onResume() {
-        Log.d("HighScoreActivity.java","onResume()");
         super.onResume();
+        Log.d("HighScoreActivity.java","onResume()");
 
         //get nickname from intent (from popup)
         String nickname = getIntent().getStringExtra("nickname");
         int score = (int)(getIntent().getDoubleExtra("score",-2));
         Log.d("HighScoreActivity.java","nickname : " + nickname);
 
-        //invalid data / nothing comes from intent
+        //invalid data / nothing comes from intent //TODO getResources = null?
         if (nickname == null){
             Log.d("HighScoreActivity.java","nickname is null!");
             return;
@@ -61,7 +74,7 @@ public class HighScoreActivity extends AppCompatActivity {
         Collections.sort(highScores);
 
         //https://stackoverflow.com/questions/55411752/how-to-get-tablelayout-cell-values-in-android
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
+        TableLayout tableLayout = findViewById(R.id.table_layout_high_score);
         for(int i=0; i<highScores.size(); i++){
             TableRow row = (TableRow) tableLayout.getChildAt(i+1);//first row reserved, offset of 1
             TextView nameTextView = (TextView) row.getChildAt(1);
@@ -70,6 +83,51 @@ public class HighScoreActivity extends AppCompatActivity {
             scoreTextView.setText(String.valueOf(highScores.get(i).getScore()));
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("HighScoreActivity.java","onPause()");
+
+        saveData();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("HighScoreActivity.java","onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("HighScoreActivity.java","onDestroy()");
+    }
+
+
+    /* on click methods for buttons */
+
+    public void backButtonOnClick(View view){
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    public void resetButtonOnClick(View view){
+
+        TableLayout tableLayout = findViewById(R.id.table_layout_high_score);
+
+        for(int i=0; i<highScores.size(); i++){
+            TableRow row = (TableRow) tableLayout.getChildAt(i+1);//first row reserved, offset of 1
+            TextView nameTextView = (TextView) row.getChildAt(1);
+            TextView scoreTextView = (TextView) row.getChildAt(2);
+            nameTextView.setText("");
+            scoreTextView.setText("");
+        }
+
+        highScores.clear();
+    }
+
+
+    /* other methods */
 
     //https://www.youtube.com/watch?v=fJEFZ6EOM9o
     public void saveData(){
@@ -97,38 +155,4 @@ public class HighScoreActivity extends AppCompatActivity {
             ));
         }
     }
-
-    public void backButtonListener(View view){
-        startActivity(new Intent(this, MainActivity.class));
-    }
-
-    public void resetButtonListener(View view){
-
-        TableLayout tableLayout = findViewById(R.id.tableLayout);
-
-        for(int i=0; i<highScores.size(); i++){
-            TableRow row = (TableRow) tableLayout.getChildAt(i+1);//first row reserved, offset of 1
-            TextView nameTextView = (TextView) row.getChildAt(1);
-            TextView scoreTextView = (TextView) row.getChildAt(2);
-            nameTextView.setText("");
-            scoreTextView.setText("");
-        }
-
-        highScores.clear();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d("HighScoreActivity.java","onPause()");
-        saveData();
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.d("HighScoreActivity.java","onDestroy()");
-        super.onDestroy();
-    }
-
-
 }

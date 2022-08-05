@@ -9,11 +9,21 @@ import android.view.View;
 
 import com.example.potroad.R;
 
+/**
+ *  The activity which shows up upon startup, works as a home screen
+ *  - launched from starting the app, HighScoreActivity or GameOverActivity
+ *  - brings to GameActivity or HighScoreActivity
+ */
 public class MainActivity extends AppCompatActivity {
+
+
+    /* Stages of the activity lifecycle */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("MainActivity.java","onCreate()");
+
         setContentView(R.layout.activity_main);
     }
 
@@ -47,13 +57,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MainActivity.java","onDestroy()");
     }
 
-    public void startButtonListener(View view){
+
+    /* on click methods for buttons */
+
+    public void startButtonOnClick(View view){
         startActivity(new Intent(this, GameActivity.class));
     }
 
-    public void highScoresButtonListener(View view){
+    public void highScoreButtonOnClick(View view){
         startActivity(new Intent(this, HighScoreActivity.class));
     }
-
-
 }
