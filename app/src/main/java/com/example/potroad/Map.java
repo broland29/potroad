@@ -8,27 +8,25 @@ import androidx.core.content.ContextCompat;
 
 public class Map {
 
-    //width and height of map/ background
-    private final float width;
-    private final float height;
+    private final float mapWidth;       //width of map/ background/ screen
+    private final float mapHeight;      //height of map/ background/ screen
+    private final float roadWidth;      //the width of one road
 
-    //roads will have two colors
-    private final Paint paint_1;
-    private final Paint paint_2;
+    private final Paint paintRoadOdd;   //color of first, third etc. road
+    private final Paint paintRoadEven;  //color of second, fourth etc. road
 
-    //the width of one road
-    private final float roadWidth;
 
-    public Map(Context context, float width, float height) {
-        this.width = width;
-        this.height = height;
+    public Map(Context context, float mapWidth, float mapHeight) {
+        this.mapWidth = mapWidth;
+        this.mapHeight = mapHeight;
 
-        roadWidth = width / 5;
+        roadWidth = mapWidth / 5;
 
-        paint_1 = new Paint();
-        paint_1.setColor(ContextCompat.getColor(context,R.color.road_1));
-        paint_2 = new Paint();
-        paint_2.setColor(ContextCompat.getColor(context,R.color.road_2));
+        paintRoadOdd = new Paint();
+        paintRoadOdd.setColor(ContextCompat.getColor(context,R.color.road_odd));
+        paintRoadEven = new Paint();
+        paintRoadEven.setColor(ContextCompat.getColor(context,R.color.road_even));
+
     }
 
     //since first road is at half width, second is at 1.5 width...
@@ -42,9 +40,9 @@ public class Map {
 
     //draws the map/ background
     public void draw(Canvas canvas){
-        canvas.drawRect(0,0,width,height,paint_1);
-
-        canvas.drawRect(roadWidth,0,2 * roadWidth,height,paint_2);
-        canvas.drawRect(3 * roadWidth,0,4 * roadWidth,height,paint_2);
+        //draw the whole screen then overlap the odd roads
+        canvas.drawRect(0,0, mapWidth, mapHeight, paintRoadOdd);
+        canvas.drawRect(roadWidth,0,2 * roadWidth, mapHeight, paintRoadEven);
+        canvas.drawRect(3 * roadWidth,0,4 * roadWidth, mapHeight, paintRoadEven);
     }
 }

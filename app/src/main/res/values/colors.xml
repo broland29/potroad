@@ -9,15 +9,22 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- colors used in the game itself, when GameActivity is active -->
     <color name="player">#FBBB5B</color>
     <color name="pothole">#302D29</color>
-    <color name="road_1">#715E40</color>
-    <color name="road_2">#A3885C</color>
+
+    <color name="road_odd">#715E40</color>
+    <color name="road_even">#A3885C</color>
+    <color name="top_bar">#A38B8B</color>
+
     <color name="score">#353535</color>
     <color name="game_over">#FF0000</color>
     <color name="health">#F62727</color>
-    <color name="health_bar">#A38B8B</color>
 
+    <!-- Other custom colors -->
+    <color name="warning">#FF0000</color>
+
+    <!-- colors from palette, for navigation (any other class than GameActivity) -->
     <!-- https://coolors.co/palette/006d77-83c5be-edf6f9-ffddd2-e29578 -->
     <color name="palette_ming">#006D77</color>
     <color name="palette_middle_blue_green">#83C5BE</color>

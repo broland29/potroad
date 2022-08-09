@@ -3,6 +3,7 @@ package com.example.potroad.panel;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 import androidx.core.content.ContextCompat;
 
@@ -18,15 +19,17 @@ public class Score {
     private final Player player;
 
     Paint paint;
-    private static final int TEXT_SIZE = 50;
+    private static final int TEXT_SIZE = 100;
     private static final int POSITION_X = 50;
-    private static final int POSITION_Y = 50;
+    private static final int POSITION_Y = 110;
 
     public Score(Context context, Player player) {
         this.player = player;
 
         paint = new Paint();
         paint.setColor(ContextCompat.getColor(context, R.color.score));
+        paint.setTypeface(Typeface.create(Typeface.SANS_SERIF,Typeface.BOLD));
+
         paint.setTextSize(TEXT_SIZE);
     }
 

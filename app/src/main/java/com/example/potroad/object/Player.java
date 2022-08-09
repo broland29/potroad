@@ -1,5 +1,9 @@
 package com.example.potroad.object;
 
+import android.graphics.Canvas;
+
+import com.example.potroad.graphics.PlayerAnimator;
+import com.example.potroad.graphics.SpriteSheet;
 import com.example.potroad.panel.Score;
 
 public class Player extends Rectangle{
@@ -9,10 +13,21 @@ public class Player extends Rectangle{
     private double gamePoints;
     private int healthPoints;
 
-    public Player(double positionX, double positionY, double width, double height, int color) {
+    private final PlayerAnimator playerAnimator;
+
+
+    public Player(double positionX, double positionY, double width, double height, int color, SpriteSheet spriteSheet) {
         super(positionX, positionY, width, height, color);
         gamePoints = 0;
         healthPoints = 3;
+
+        playerAnimator = new PlayerAnimator(spriteSheet.getPlayerSprites(this));
+    }
+
+    @Override
+    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+        //super.draw(canvas,gameDisplay);
+        playerAnimator.draw(canvas,this);
     }
 
     public void jumpLeft(float roadWidth){

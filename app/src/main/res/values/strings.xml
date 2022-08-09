@@ -31,11 +31,16 @@
     <string name="title_high_score">High Scores</string>
     <string name="reset_high_score">Reset</string>
     <string name="back_high_score">Back</string>
+    <string name="bad_high_score">Better luck next time!</string>
+    <string name="good_high_score">You are on the podium!</string>
 
     <!-- highScorePopup strings -->
     <string name="name_popup_high_score">Nickname</string>
     <string name="back_popup_high_score">Back</string>
     <string name="submit_popup_high_score">Submit</string>
+    <string name="bad_nickname_popup_high_score">Invalid nickname!</string>
+    <string name="bad_score_popup_high_score">Unexpected error occurred!</string>
+
 
 
 </resources>

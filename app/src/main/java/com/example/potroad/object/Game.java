@@ -17,8 +17,11 @@ import com.example.potroad.GameLoop;
 import com.example.potroad.activity.GameOverActivity;
 import com.example.potroad.Map;
 import com.example.potroad.R;
+import com.example.potroad.graphics.PlayerAnimator;
+import com.example.potroad.graphics.SpriteSheet;
 import com.example.potroad.panel.HealthBar;
 import com.example.potroad.panel.Score;
+import com.example.potroad.panel.TopBar;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,6 +37,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private final Player player;
     private final List<Pothole> potholeList;
 
+    private final TopBar topBar;
     private final Score score;
     private final HealthBar healthBar;
 
@@ -41,6 +45,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private double currentPotholeSpeedBonus;
     private double currentUpdatesPerPotholeSpawn;
+
+    private final double ROAD_SIZE;
+    private final double PLAYER_SIZE;
+    private final double POTHOLE_SIZE;
+
+    private final SpriteSheet spriteSheet;
 
     public Game(Context context) {
         super(context);
@@ -56,30 +66,31 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         gameDisplay = new GameDisplay(displayMetrics.widthPixels,displayMetrics.heightPixels);
 
-        map = new Map(context,displayMetrics.widthPixels,displayMetrics.heightPixels);
+        float mapWidth = displayMetrics.widthPixels;
+        float mapHeight = displayMetrics.heightPixels;
+        map = new Map(context,mapWidth,mapHeight);
+        ROAD_SIZE = mapWidth / 5;
+        PLAYER_SIZE = ROAD_SIZE * 0.70;
+        POTHOLE_SIZE = ROAD_SIZE * 0.40;
+
+        spriteSheet = new SpriteSheet(context);
 
         player = new Player(
-                map.getMiddleWidthOfRoad(3) - 25,
-                displayMetrics.heightPixels - 300,
-                50,
-                50,
-                ContextCompat.getColor(context, R.color.player));
+                map.getMiddleWidthOfRoad(3) - PLAYER_SIZE / 2,
+                displayMetrics.heightPixels - 2 * PLAYER_SIZE,//offset of player size from bottom of screen
+                PLAYER_SIZE,
+                PLAYER_SIZE,
+                ContextCompat.getColor(context, R.color.player),
+                spriteSheet);
 
         potholeList = new ArrayList<>();
-        for(int i=0; i<5; i++){
-            potholeList.add(new Pothole(
-                    map.getMiddleWidthOfRoad(i + 1) - 25,
-                    i * 200,
-                    50,
-                    50,
-                    ContextCompat.getColor(context,R.color.pothole),
-                    currentPotholeSpeedBonus));
-        }
+
         currentPotholeSpeedBonus = 0;
         currentUpdatesPerPotholeSpawn = Pothole.INITIAL_UPDATES_PER_SPAWN;
 
+        topBar = new TopBar(context);
         score = new Score(context,player);
-        healthBar = new HealthBar(context);
+        healthBar = new HealthBar(context,spriteSheet.getHealthSprite());
     }
 
     public void draw(Canvas canvas) {
@@ -93,15 +104,17 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             pothole.draw(canvas,gameDisplay);
         }
 
+        topBar.draw(canvas,gameDisplay.getDisplayWidthPixels());    //top bar's draw after potholes, so they can spawn behind it seamlessly
         score.draw(canvas);
         healthBar.draw(canvas, player.getHealthPoints(), gameDisplay);
 
         if(player.getHealthPoints() <= 0){
             //black magic: https://stackoverflow.com/questions/4298225/how-can-i-start-an-activity-from-a-non-activity-class
             Intent intent = new Intent(context, GameOverActivity.class);
-            intent.putExtra("score",player.getGamePoints());    //pass high score
+            intent.putExtra("score",(int) player.getGamePoints());    //pass high score
             context.startActivity(intent);
         }
+
     }
 
     public void update(){
@@ -115,12 +128,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         if(Pothole.readyToSpawn(currentUpdatesPerPotholeSpawn)){
             int i = (int)((Math.random() * 5) + 1);
             potholeList.add(new Pothole(
-                    map.getMiddleWidthOfRoad(i) - 25,
-                    100,
-                    50,
-                    50,
+                    map.getMiddleWidthOfRoad(i) - POTHOLE_SIZE / 2,
+                    -50,
+                    POTHOLE_SIZE,
+                    POTHOLE_SIZE,
                     ContextCompat.getColor(getContext(),R.color.pothole),
-                    currentPotholeSpeedBonus));
+                    currentPotholeSpeedBonus,
+                    spriteSheet));
         }
 
         if(Pothole.readyForSpeedup()){

@@ -1,8 +1,10 @@
 package com.example.potroad.object;
 
-import android.util.Log;
+import android.graphics.Canvas;
 
 import com.example.potroad.GameLoop;
+import com.example.potroad.graphics.Sprite;
+import com.example.potroad.graphics.SpriteSheet;
 
 public class Pothole extends Rectangle{
 
@@ -20,10 +22,20 @@ public class Pothole extends Rectangle{
     private static double updatesUntilNextSpeedup = UPDATES_FOR_SPEEDUP;
 
     private static final double INITIAL_Y_VELOCITY = INITIAL_SPEED_PIXELS_PER_SECOND / GameLoop.MAX_UPS; //pixels per update
+    private final Sprite sprite;
 
-    public Pothole(double positionX, double positionY, double width, double height, int color, double currentSpeedup) {
+    public Pothole(double positionX, double positionY, double width, double height, int color, double currentSpeedup, SpriteSheet spriteSheet) {
         super(positionX, positionY, width, height, color);
+
         velocityY = INITIAL_Y_VELOCITY + currentSpeedup;
+
+        sprite = spriteSheet.getPotholeSprite(this);
+    }
+
+    @Override
+    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+        //super.draw(canvas,gameDisplay);
+        sprite.draw(canvas,(int)positionX,(int)positionY);
     }
 
     public static boolean readyToSpawn(double currentUpdatesPerSpawn){
