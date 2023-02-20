@@ -1,10 +1,8 @@
-package com.example.potroad.object;
+package com.example.potroad.core;
 
 import android.graphics.Canvas;
 
-import com.example.potroad.GameLoop;
 import com.example.potroad.graphics.Sprite;
-import com.example.potroad.graphics.SpriteSheet;
 
 public class Pothole extends Rectangle{
 
@@ -13,6 +11,7 @@ public class Pothole extends Rectangle{
     private static final double INITIAL_SPAWNS_PER_MINUTE = 30;
     private static final double INITIAL_SPAWNS_PER_SECOND = INITIAL_SPAWNS_PER_MINUTE / 60.0;
     public static final double INITIAL_UPDATES_PER_SPAWN = GameLoop.MAX_UPS / INITIAL_SPAWNS_PER_SECOND;
+
     public static double updatesUntilNextSpawn; //updates left for next pothole to spawn
 
     public static final double SPEEDUP = 3;// / GameLoop.MAX_UPS;
@@ -24,16 +23,16 @@ public class Pothole extends Rectangle{
     private static final double INITIAL_Y_VELOCITY = INITIAL_SPEED_PIXELS_PER_SECOND / GameLoop.MAX_UPS; //pixels per update
     private final Sprite sprite;
 
-    public Pothole(double positionX, double positionY, double width, double height, int color, double currentSpeedup, SpriteSheet spriteSheet) {
+    public Pothole(double positionX, double positionY, double width, double height, int color, double currentSpeedup, Sprite sprite) {
         super(positionX, positionY, width, height, color);
 
         velocityY = INITIAL_Y_VELOCITY + currentSpeedup;
 
-        sprite = spriteSheet.getPotholeSprite(this);
+        this.sprite = sprite;
     }
 
     @Override
-    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+    public void draw(Canvas canvas) {
         //super.draw(canvas,gameDisplay);
         sprite.draw(canvas,(int)positionX,(int)positionY);
     }

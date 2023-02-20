@@ -3,8 +3,8 @@ package com.example.potroad.graphics;
 import android.graphics.Canvas;
 import android.util.Log;
 
-import com.example.potroad.object.GameDisplay;
-import com.example.potroad.object.Player;
+
+import com.example.potroad.core.Player;
 
 public class PlayerAnimator {
     private final Sprite[] sprites;

@@ -1,4 +1,4 @@
-package com.example.potroad;
+package com.example.potroad.core;
 
 public class HighScore implements Comparable<HighScore>{
     private final String name;

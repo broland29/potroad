@@ -1,9 +1,7 @@
-package com.example.potroad.object;
+package com.example.potroad.core;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-
-import com.example.potroad.R;
 
 public abstract class Rectangle extends GameObject{
     protected double width;
@@ -20,7 +18,7 @@ public abstract class Rectangle extends GameObject{
         paint.setColor(color);
     }
 
-    public void draw(Canvas canvas, GameDisplay gameDisplay){
+    public void draw(Canvas canvas){
         canvas.drawRect(
                 (float) positionX,              //left
                 (float) positionY,              //top

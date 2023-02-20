@@ -7,8 +7,7 @@ import android.graphics.Rect;
 import android.util.Log;
 
 import com.example.potroad.R;
-import com.example.potroad.object.Player;
-import com.example.potroad.object.Pothole;
+import com.example.potroad.core.Player;
 import com.example.potroad.panel.HealthBar;
 
 public class SpriteSheet {
@@ -37,11 +36,8 @@ public class SpriteSheet {
         return sprites;
     }
 
-    public Sprite getPotholeSprite(Pothole pothole){
+    public Sprite getPotholeSprite(int potholeWidth, int potholeHeight){
         int i = (int)(Math.random() * 3);
-
-        int potholeWidth = (int)pothole.getWidth();
-        int potholeHeight = (int)pothole.getHeight();
 
         switch (i){
             case 0:

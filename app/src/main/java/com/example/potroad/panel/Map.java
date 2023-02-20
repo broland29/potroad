@@ -1,10 +1,12 @@
-package com.example.potroad;
+package com.example.potroad.panel;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import androidx.core.content.ContextCompat;
+
+import com.example.potroad.R;
 
 public class Map {
 
@@ -23,15 +25,16 @@ public class Map {
         roadWidth = mapWidth / 5;
 
         paintRoadOdd = new Paint();
-        paintRoadOdd.setColor(ContextCompat.getColor(context,R.color.road_odd));
+        paintRoadOdd.setColor(ContextCompat.getColor(context, R.color.road_odd));
         paintRoadEven = new Paint();
         paintRoadEven.setColor(ContextCompat.getColor(context,R.color.road_even));
 
     }
 
-    //since first road is at half width, second is at 1.5 width...
-    public float getMiddleWidthOfRoad(int roadNo){
-        return roadWidth * (roadNo - 0.5f);
+    // 1st middle: 0.5 width
+    // 2nd middle: 1.5 width ...
+    public float middleOfRoad(int roadNo){
+        return (roadNo - 0.5f) * roadWidth;
     }
 
     public float getRoadWidth() {

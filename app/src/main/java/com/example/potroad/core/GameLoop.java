@@ -1,9 +1,7 @@
-package com.example.potroad;
+package com.example.potroad.core;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
-
-import com.example.potroad.object.Game;
 
 public class GameLoop extends Thread{
 

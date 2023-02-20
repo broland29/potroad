@@ -3,7 +3,6 @@ package com.example.potroad.graphics;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.example.potroad.R;
 
 
 public class Sprite {

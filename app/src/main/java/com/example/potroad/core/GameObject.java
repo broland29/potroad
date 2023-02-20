@@ -1,4 +1,4 @@
-package com.example.potroad.object;
+package com.example.potroad.core;
 
 import android.graphics.Canvas;
 
@@ -15,7 +15,7 @@ public abstract class GameObject {
         this.positionY = positionY;
     }
 
-    public abstract void draw(Canvas canvas, GameDisplay gameDisplay);
+    public abstract void draw(Canvas canvas);
 
     public abstract void update();
 

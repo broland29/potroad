@@ -12,7 +12,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.potroad.HighScore;
+import com.example.potroad.core.HighScore;
 import com.example.potroad.R;
 
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.potroad.R;
-import com.example.potroad.object.Game;
+import com.example.potroad.core.Game;
 
 /**
  * The activity which contains the game itself (active when the user is playing)

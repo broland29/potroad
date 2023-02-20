@@ -1,4 +1,4 @@
-package com.example.potroad.object;
+package com.example.potroad.core;
 
 import android.graphics.Canvas;
 
@@ -25,7 +25,7 @@ public class Player extends Rectangle{
     }
 
     @Override
-    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+    public void draw(Canvas canvas) {
         //super.draw(canvas,gameDisplay);
         playerAnimator.draw(canvas,this);
     }
