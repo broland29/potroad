@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -34,6 +33,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private final Player player;
     private final List<Pothole> potholeList;
+    private final List<DebugRectangle> debugRectangles;
 
     private final TopBar topBar;
     private final Score score;
@@ -41,17 +41,15 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     private final Context context;
 
-    private double currentPotholeSpeedBonus;
-    private double currentUpdatesPerPotholeSpawn;
-
-    private final double ROAD_SIZE;
-    private final double POTHOLE_SIZE;
-
-    private final SpriteSheet spriteSheet;
-
+    private float[] roadMiddle;
     private final float width;
     private final float height;
+    private double POTHOLE_SIZE;
 
+
+    private final PotholeSpawner potholeSpawner;
+
+    private boolean DEBUG_PATH = true;
 
     public Game(Context context) {
         super(context);
@@ -69,19 +67,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         // draw background
         map = new Map(context, width, height);
+        roadMiddle = map.getRoadMiddle();
 
         // initialize sprite sheet
-        spriteSheet = new SpriteSheet(context);
+        SpriteSheet spriteSheet = new SpriteSheet(context);
 
         // establish some constants
-        ROAD_SIZE = width / 5;
+        double ROAD_SIZE = width / 5;
         double playerSize = ROAD_SIZE * 0.70;
         POTHOLE_SIZE = ROAD_SIZE * 0.40;
 
         // initialize player
         player = new Player(
-                map.middleOfRoad(3) - playerSize / 2,   // to the left by half size
-                displayMetrics.heightPixels - 2 * playerSize,           // up by twice the size
+                roadMiddle[2] - playerSize / 2,             // to the left by half size
+                displayMetrics.heightPixels - 2 * playerSize,        // up by twice the size
                 playerSize,
                 playerSize,
                 ContextCompat.getColor(context, R.color.player),
@@ -89,14 +88,18 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         // deal with potholes
         potholeList = new ArrayList<>();
+        potholeSpawner = new PotholeSpawner(
+                POTHOLE_SIZE,
+                roadMiddle,
+                ContextCompat.getColor(context, R.color.pothole),
+                spriteSheet.getPotholeSprites((int) POTHOLE_SIZE,(int) POTHOLE_SIZE));
 
-        currentPotholeSpeedBonus = 0;
-        currentUpdatesPerPotholeSpawn = Pothole.INITIAL_UPDATES_PER_SPAWN;
+        debugRectangles = new ArrayList<>();
 
         // other static elements
         topBar = new TopBar(context);
         score = new Score(context);
-        healthBar = new HealthBar(context, spriteSheet.getHealthSprite());
+        healthBar = new HealthBar(spriteSheet.getHealthSprite());
     }
 
 
@@ -106,13 +109,19 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         map.draw(canvas);
         player.draw(canvas);
 
+        if (DEBUG_PATH) {
+            for (DebugRectangle debugRectangle : debugRectangles) {
+                debugRectangle.draw(canvas);
+            }
+        }
+
         for(Pothole pothole : potholeList){
             pothole.draw(canvas);
         }
 
         topBar.draw(canvas, width);    //top bar's draw after potholes, before score and healthBar!
         score.draw(canvas, player.getGamePoints());
-        healthBar.draw(canvas, player.getHealthPoints(), width);
+        healthBar.draw(canvas, player.getHealthPoints(), (int) width);
 
         if(player.getHealthPoints() <= 0){
             // "An intent is an abstract description of an operation to be performed"
@@ -120,6 +129,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             intent.putExtra("score",(int) player.getGamePoints());  // pass high score
             context.startActivity(intent);                                // execute intent
         }
+
     }
 
 
@@ -127,30 +137,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         // update player //
         player.update();
+        potholeSpawner.update();
 
         // update potholes //
         // spawn pothole if necessary
-        if(Pothole.readyToSpawn(currentUpdatesPerPotholeSpawn)){
-            int roadNo = (int) ((Math.random() * 5) + 1);
-            potholeList.add(new Pothole(
-                    map.middleOfRoad(roadNo) - POTHOLE_SIZE / 2,
-                    -50,
-                    POTHOLE_SIZE,
-                    POTHOLE_SIZE,
-                    ContextCompat.getColor(context, R.color.pothole),
-                    currentPotholeSpeedBonus,
-                    spriteSheet.getPotholeSprite((int) POTHOLE_SIZE, (int) POTHOLE_SIZE)));
-        }
-
-        // speed up potholes if necessary
-        if(Pothole.readyForSpeedup()){
-            currentPotholeSpeedBonus += Pothole.SPEEDUP;  //for future potholes' starting speed
-            for(Pothole pothole : potholeList){
-                pothole.speedUp();
-            }
-            Pothole.updatesUntilNextSpawn = currentUpdatesPerPotholeSpawn; // a pothole spawned, but the next one will spawn faster
-            currentUpdatesPerPotholeSpawn *= 0.8;
-            Log.d("Game.java","update() - currentUpdatesPerPotholeSpawn = " + currentUpdatesPerPotholeSpawn);
+        if(potholeSpawner.readyToSpawn()){
+            debugRectangles.addAll(potholeSpawner.generatePathRow());   // before generatePotholeRow !
+            potholeList.addAll(potholeSpawner.generatePotholeRow(potholeSpawner.generatePattern(2)));   // todo: difficulty, vary number
         }
 
         // iterate potholes
@@ -174,6 +167,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         for(Pothole pothole : potholeList){
             pothole.update();
+        }
+
+        for(DebugRectangle dr : debugRectangles){
+            dr.update();
         }
     }
 

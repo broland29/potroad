@@ -52,6 +52,16 @@ public class SpriteSheet {
         }
     }
 
+    public Sprite[] getPotholeSprites(int potholeWidth, int potholeHeight){
+        Sprite[] potholeSprites = new Sprite[3];
+
+        potholeSprites[0] = new Sprite(this, new Rect(100, 0, 200, 100),potholeWidth,potholeHeight);
+        potholeSprites[1] = new Sprite(this, new Rect(200, 0, 300, 100),potholeWidth,potholeHeight);
+        potholeSprites[2] = new Sprite(this, new Rect(300, 0, 400, 100),potholeWidth,potholeHeight);
+
+        return potholeSprites;
+    }
+
     public Sprite getHealthSprite(){
         return new Sprite(
                 this,

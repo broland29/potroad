@@ -8,9 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.potroad.R;
 
-/**
- * The top serves as a background for the score and health, at the top of the screen
- */
+/** Background of score and health */
 public class TopBar {
     public static final float TOP_BAR_HEIGHT = 150;
 
